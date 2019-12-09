@@ -19,7 +19,7 @@
                     $strTitle = 'Edit invoice';
                     echo $strTitle;
                     ?>
-                    <a href="<?php echo ADMIN_BASE_URL . 'invoice'; ?>"><button type="button" class="btn btn-lg btn-primary pull-right"><i class="fa fa-chevron-left"></i>&nbsp;&nbsp;&nbsp;<b>Back</b></button></a>
+                    <a href="<?php echo ADMIN_BASE_URL . 'invoice/manage'; ?>"><button type="button" class="btn btn-lg btn-primary pull-right"><i class="fa fa-chevron-left"></i>&nbsp;&nbsp;&nbsp;<b>View Invoice</b></button></a>
        </h3>             
             
     </div>
@@ -285,9 +285,9 @@
                         <div class="form-group">
                         <?php
                         $attribute = array('class' => 'control-label col-md-3');
-                        echo form_label('Test <span style="color:red">*</span>', 'test', $attribute);?>
+                        echo form_label('Test', 'test', $attribute);?>
                         <div class="col-md-9">
-                          <select class="form-control" id="test" required="required" name="test" tabindex="14">
+                          <select class="form-control" id="test" name="test" tabindex="14">
                             <option value="">Select</option>
                             <?php if(isset($news['test_id']) && !empty($news['test_id'])) { ?>
                             <option selected value="<?php echo $news['test_id'].','.$news['test_name']; ?>"><?php echo $news['test_name'];?></option>
@@ -322,7 +322,7 @@
                           <div class="col-md-6">
                             <h4 style="text-align: right;">Total Payment</h4>
                           </div>
-                          <div class="col-md-3">
+                          <div class="col-md-4">
                             <input type="number" readonly name="total_pay" value="0" class="form-control" style="text-align: center;">
                           </div>
                         </div>
@@ -330,7 +330,7 @@
                           <div class="col-md-6">
                             <h4 style="text-align: right;">Discount</h4>
                           </div>
-                          <div class="col-md-3">
+                          <div class="col-md-4">
                             <input type="number" name="discount" id="discount" class="form-control" value="0" style="text-align: center;" tabindex="16">
                           </div>
                         </div>
@@ -338,7 +338,7 @@
                           <div class="col-md-6">
                             <h4 style="text-align: right;">Net Amount</h4>
                           </div>
-                          <div class="col-md-3">
+                          <div class="col-md-4">
                             <input type="number" readonly name="net_amount" value="0" class="form-control" style="text-align: center;">
                           </div>
                         </div>
@@ -346,7 +346,7 @@
                           <div class="col-md-6">
                             <h4 style="text-align: right;">Paid Amount</h4>
                           </div>
-                          <div class="col-md-3">
+                          <div class="col-md-4">
                             <input type="number" name="paid_amount" id="paid_amount" class="form-control" value="0" style="text-align: center;" tabindex="17">
                           </div>
                         </div>
@@ -354,7 +354,7 @@
                           <div class="col-md-6">
                             <h4 style="text-align: right;">Remaining</h4>
                           </div>
-                          <div class="col-md-3">
+                          <div class="col-md-4">
                             <input type="number" readonly name="remaining" value="0" class="form-control" style="text-align: center;">
                           </div>
                         </div>
@@ -370,13 +370,13 @@
                     <div class="col-md-12">
                       <div class="col-md-offset-2 col-md-9" style="padding-bottom:15px;padding-top:15px;">
                        <span style="margin-left:40px"></span>
-                       <button type="submit" id="button1" class="btn btn-primary" tabindex="18"><i class="fa fa-check"></i>&nbsp;Save</button>
-                       <button type="submit" id="button1" class="btn btn-info" tabindex="19"><i class="fa fa-print"></i>&nbsp;Print</button>
+                       <button type="submit" id="button1" class="btn btn-success btn-lg" tabindex="18" style="margin-left:20px; border-radius: 7px !important; padding: 20px; font-size: 20px;"><i class="fa fa-check"></i>&nbsp;Save</button>
+                       <button type="submit" id="button1" class="btn btn-success btn-lg" tabindex="19" style="margin-left:20px; border-radius: 7px !important; padding: 20px;font-size: 20px;"><i class="fa fa-print"></i>&nbsp;Print</button>
                        <a href="<?php echo ADMIN_BASE_URL . 'invoice/create'; ?>">
-                        <button type="button" class="btn green btn-default" style="margin-left:20px;" tabindex="20"><i class="fa fa-file"></i>&nbsp;New</button>
+                        <button type="button" class="btn btn-info btn-lg" style="margin-left:20px; border-radius: 7px !important; padding: 20px;font-size: 20px;" tabindex="20"><i class="fa fa-file"></i>&nbsp;New</button>
                         </a>
                         <a href="<?php echo ADMIN_BASE_URL . 'invoice'; ?>">
-                        <button type="button" class="btn green btn-default" style="margin-left:20px;" tabindex="21"><i class="fa fa-undo"></i>&nbsp;Cancel</button>
+                        <button type="button" class="btn btn-danger btn-lg" style="margin-left:20px;border-radius: 7px !important;padding: 20px;font-size: 20px;" tabindex="21"><i class="fa fa-undo"></i>&nbsp;Cancel</button>
                         </a>
                       </div>
                     </div>
@@ -442,8 +442,14 @@ $('input[name=discount]').keyup(function() {
 $('input[name=paid_amount]').keyup(function() {
     var net_amount = parseInt($('input[name=net_amount]').val());
     var paid_amount = $(this).val();
-    var remaining = paid_amount - net_amount;
-    $('input[name=remaining]').val(remaining);
+    var remaining = net_amount - paid_amount;
+    if (remaining > 0) {
+      $('input[name=remaining]').val(remaining);
+    }
+    else {
+      $('input[name=remaining]').val(0);
+    }
+    
 });
 });
 </script>

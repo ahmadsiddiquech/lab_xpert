@@ -12,7 +12,7 @@ class Invoice extends MX_Controller
     }
 
     function index() {
-        $this->manage();
+        $this->create();
     }
 
     function manage() {
@@ -42,13 +42,47 @@ class Invoice extends MX_Controller
         $this->template->admin($data);
     }
 
+    function report() {
+        $update_id = $this->uri->segment(4);
+        $user_data = $this->session->userdata('user_data');
+        $org_id = $user_data['user_id'];
+        if (is_numeric($update_id) && $update_id != 0) {
+            $data['news'] = $this->_get_data_from_db($update_id);
+            $data['test'] = $this->_get_data_from_db_test($update_id)->result_array();
+        }
+        $data['update_id'] = $update_id;
+        $data['view_file'] = 'report';
+        $this->load->module('template');
+        $this->template->admin($data);
+    }
+
+    function update_result () {
+        $test_id = $this->input->post('test_id');
+        $result_value = $this->input->post('result_value');
+        $this->load->model('mdl_invoice');
+        $check = $this->mdl_invoice->update_result($test_id,$result_value);
+
+        if($check == true){
+            echo "true";
+        }
+        else{
+            echo "false";
+        }
+    }
+
     function print_invoice() {
         $invoice_id = $this->uri->segment(4);
         $user_data = $this->session->userdata('user_data');
         $org_id = $user_data['user_id'];
         $data['invoice'] = $this->_get_invoice_data($invoice_id,$org_id)->result_array();
         $this->load->view('invoice_print',$data);
+    }
 
+    function print_invoice_on_save($invoice_id) {
+        $user_data = $this->session->userdata('user_data');
+        $org_id = $user_data['user_id'];
+        $data['invoice'] = $this->_get_invoice_data($invoice_id,$org_id)->result_array();
+        $this->load->view('invoice_print',$data);
     }
  
     function _get_data_from_db($update_id) {
@@ -157,11 +191,12 @@ class Invoice extends MX_Controller
             $dataTest['p_id'] = $patient_id;
             $invoice_id = $this->_insert($dataTest);
             $test_id = $this->insert_test($invoice_id,$org_id);
+            $this->print_invoice_on_save($invoice_id);
         }
-        $this->session->set_flashdata('message', 'invoice'.' '.DATA_SAVED);
-        $this->session->set_flashdata('status', 'success');
+        // $this->session->set_flashdata('message', 'invoice'.' '.DATA_SAVED);
+        // $this->session->set_flashdata('status', 'success');
         
-        redirect(ADMIN_BASE_URL . 'invoice');
+        // redirect(ADMIN_BASE_URL . 'invoice');
     }
 
     function insert_test($invoice_id,$org_id){
@@ -268,6 +303,11 @@ class Invoice extends MX_Controller
     function _get_by_arr_id($update_id) {
         $this->load->model('mdl_invoice');
         return $this->mdl_invoice->_get_by_arr_id($update_id);
+    }
+
+    function _get_data_from_db_test($update_id) {
+        $this->load->model('mdl_invoice');
+        return $this->mdl_invoice->_get_data_from_db_test($update_id);
     }
 
     function _insert($data){

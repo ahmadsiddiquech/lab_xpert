@@ -33,6 +33,24 @@ class Mdl_invoice extends CI_Model {
         return $this->db->get($table);
     }
 
+    function _get_data_from_db_test($update_id){
+        $table = 'test_invoice';
+        $user_data = $this->session->userdata('user_data');
+        $org_id = $user_data['user_id'];
+        $this->db->order_by('id','DESC');
+        $this->db->where('invoice_id',$update_id);
+        $this->db->where('org_id',$org_id);
+        return $this->db->get($table);
+    }
+
+    function update_result($test_id,$result_value){
+        $table = "test_invoice";
+        $this->db->where('id', $test_id);
+        $this->db->set('result_value',$result_value);
+        $this->db->update($table);
+        return $this->db->affected_rows();
+    }
+
     function _insert($data) {
         $table = $this->get_table();
         $this->db->insert($table, $data);

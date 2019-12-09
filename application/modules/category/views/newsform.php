@@ -69,13 +69,12 @@
                                 'id' => 'description',
                                 'class' => 'form-control',
                                 'type' => 'text',
-                                'required' => 'required',
                                 'value' => $news['description'],
                                 'tabindex' => '2',
                                 );
                                 $attribute = array('class' => 'control-label col-md-4');
                                 ?>
-                          <?php echo form_label('Description<span style="color:red">*</span>', 'description', $attribute); ?>
+                          <?php echo form_label('Description', 'description', $attribute); ?>
                           <div class="col-md-8"> <?php echo form_input($data); ?></div>
                         </div>
                       </div>

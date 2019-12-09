@@ -28,7 +28,7 @@
                                             $new) {
                                         $i++;
                                         $print_url = ADMIN_BASE_URL . 'invoice/print_invoice/' . $new->id ;
-                                        $edit_url = ADMIN_BASE_URL . 'invoice/create/' . $new->id ;
+                                        $edit_url = ADMIN_BASE_URL . 'invoice/report/' . $new->id ;
                                         $delete_url = ADMIN_BASE_URL . 'invoice/delete/' . $new->id;
                                         ?>
                                         <tr id="Row_<?=$new->id?>" class="odd gradeX " >
@@ -46,7 +46,7 @@
 
                                         echo anchor($print_url, '<i class="fa fa-print"></i>', array('class' => 'action_edit btn blue c-btn','title' => 'Print Invoice'));
 
-                                        echo anchor($edit_url, '<i class="fa fa-edit"></i>', array('class' => 'action_edit btn blue c-btn','title' => 'Edit invoice'));
+                                        echo anchor($edit_url, '<i class="fa fa-mail-forward"></i>', array('class' => 'action_edit btn blue c-btn','title' => 'Enter Result'));
 
                                         echo anchor('"javascript:;"', '<i class="fa fa-times"></i>', array('class' => 'delete_record btn red c-btn', 'rel' => $new->id, 'title' => 'Delete invoice'));
                                         ?>

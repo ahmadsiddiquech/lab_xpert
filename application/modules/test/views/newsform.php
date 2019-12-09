@@ -68,14 +68,13 @@
                               'id' => 'test_code',
                               'class' => 'form-control',
                               'type' => 'text',
-                              'required' => 'required',
                               'tabindex' => '2',
                               'value' => $news['test_code'],
                               'data-parsley-maxlength'=>TEXT_BOX_RANGE
                               );
                               $attribute = array('class' => 'control-label col-md-4');
                               ?>
-                          <?php echo form_label('Test Code<span style="color:red">*</span>', 'test_code', $attribute); ?>
+                          <?php echo form_label('Test Code', 'test_code', $attribute); ?>
                           <div class="col-md-8"> <?php echo form_input($data); ?></div>
                         </div>
                       </div>
@@ -89,7 +88,7 @@
                               <span style="color:red">*</span>
                             </div>
                             <div class="col-md-8">
-                              <select name="category" id="category" class="form-control">
+                              <select name="category" id="category" class="form-control" required tabindex="3">
                               <option value="">Select</option>
                               <?php if(isset($category) && !empty($category))
                               foreach ($category as $key => $value):?>
@@ -106,7 +105,7 @@
                               <span style="color:red">*</span>
                             </div>
                             <div class="col-md-8">
-                              <select name="unit" id="unit" class="form-control">
+                              <select name="unit" id="unit" class="form-control" required tabindex="4">
                               <option value="">Select</option>
                               <?php if(isset($unit) && !empty($unit))
                               foreach ($unit as $key => $value):?>
@@ -126,14 +125,13 @@
                                 'id' => 'male_value',
                                 'class' => 'form-control',
                                 'type' => 'text',
-                                'tabindex' => '3',
-                                'required' => 'required',
+                                'tabindex' => '5',
                                 'data-parsley-maxlength'=>TEXT_BOX_RANGE,
                                'value' => $news['male_value'],
                                 );
                                 $attribute = array('class' => 'control-label col-md-4');
                                 ?>
-                          <?php echo form_label('Male Value<span style="color:red">*</span>', 'male_value', $attribute); ?>
+                          <?php echo form_label('Male Value', 'male_value', $attribute); ?>
                           <div class="col-md-8"> <?php echo form_input($data); ?> </div>
                         </div>
                       </div>
@@ -145,14 +143,13 @@
                                 'id' => 'female_value',
                                 'class' => 'form-control',
                                 'type' => 'text',
-                                'tabindex' => '4',
-                                'required' => 'required',
+                                'tabindex' => '6',
                                 'data-parsley-maxlength'=>TEXT_BOX_RANGE,
                                'value' => $news['female_value'],
                                 );
                                 $attribute = array('class' => 'control-label col-md-4');
                                 ?>
-                          <?php echo form_label('Female Value<span style="color:red">*</span>', 'female_value', $attribute); ?>
+                          <?php echo form_label('Female Value', 'female_value', $attribute); ?>
                           <div class="col-md-8"> <?php echo form_input($data); ?> </div>
                         </div>
                       </div>
@@ -166,14 +163,13 @@
                                 'id' => 'child_value',
                                 'class' => 'form-control',
                                 'type' => 'text',
-                                'tabindex' => '5',
-                                'required' => 'required',
+                                'tabindex' => '7',
                                 'data-parsley-maxlength'=>TEXT_BOX_RANGE,
                                'value' => $news['child_value'],
                                 );
                                 $attribute = array('class' => 'control-label col-md-4');
                                 ?>
-                          <?php echo form_label('Child Value<span style="color:red">*</span>', 'child_value', $attribute); ?>
+                          <?php echo form_label('Child Value', 'child_value', $attribute); ?>
                           <div class="col-md-8"> <?php echo form_input($data); ?> </div>
                         </div>
                       </div>
@@ -185,14 +181,13 @@
                                 'id' => 'delivery_time',
                                 'class' => 'form-control',
                                 'type' => 'text',
-                                'tabindex' => '6',
-                                'required' => 'required',
+                                'tabindex' => '8',
                                 'data-parsley-maxlength'=>TEXT_BOX_RANGE,
                                'value' => $news['delivery_time'],
                                 );
                                 $attribute = array('class' => 'control-label col-md-4');
                                 ?>
-                          <?php echo form_label('Delivery Time<span style="color:red">*</span>', 'delivery_time', $attribute); ?>
+                          <?php echo form_label('Delivery Time', 'delivery_time', $attribute); ?>
                           <div class="col-md-8"> <?php echo form_input($data); ?> </div>
                         </div>
                       </div>
@@ -206,7 +201,7 @@
                                 'id' => 'charges',
                                 'class' => 'form-control',
                                 'type' => 'text',
-                                'tabindex' => '7',
+                                'tabindex' => '9',
                                 'required' => 'required',
                                 'data-parsley-maxlength'=>TEXT_BOX_RANGE,
                                'value' => $news['charges'],
