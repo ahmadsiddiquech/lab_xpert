@@ -1,39 +1,52 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')){
     exit('No direct script access allowed');
+}
 
-class Mdl_expense extends CI_Model {
+class Mdl_invoice extends CI_Model {
 
     function __construct() {
         parent::__construct();
     }
 
     function get_table() {
-        $table = "expense";
+        $table = "invoice";
         return $table;
     }
 
-    function _get_by_arr_id($arr_col) {
-        $table = $this->get_table();
+   function _get_by_arr_id($update_id) {
         $user_data = $this->session->userdata('user_data');
         $org_id = $user_data['user_id'];
-        $this->db->where($arr_col);
+        $table = $this->get_table();
+        $this->db->where('id',$update_id);
         $this->db->where('org_id',$org_id);
         return $this->db->get($table);
     }
 
     function _get($order_by) {
+        $table = $this->get_table();
         $user_data = $this->session->userdata('user_data');
         $org_id = $user_data['user_id'];
-        $table = $this->get_table();
-        $this->db->where('org_id',$org_id);
         $this->db->order_by($order_by);
+        $this->db->where('org_id',$org_id);
         return $this->db->get($table);
     }
 
     function _insert($data) {
         $table = $this->get_table();
+        $this->db->insert($table, $data);
+        return $this->db->insert_id();
+    }
+
+    function _insert_test($data) {
+        $table = 'test_invoice';
+        $this->db->insert($table, $data);
+        return $this->db->insert_id();
+    }
+
+    function _insert_pateint($data) {
+        $table = 'patient';
         $this->db->insert($table, $data);
         return $this->db->insert_id();
     }
@@ -56,5 +69,16 @@ class Mdl_expense extends CI_Model {
         $this->db->where('id', $arr_col);
         $this->db->where('org_id',$org_id);
         $this->db->delete($table);
+    }
+
+    function _get_invoice_data($invoice_id,$org_id){
+        $this->db->select('users.*,invoice.*,test_invoice.*,patient.*');
+        $this->db->from('invoice');
+        $this->db->join("test_invoice", "test_invoice.invoice_id = invoice.id", "full");
+        $this->db->join("users", "users.id = invoice.org_id", "full");
+        $this->db->join("patient", "patient.id = invoice.p_id", "full");
+        $this->db->where('invoice.id', $invoice_id);
+        $this->db->where('invoice.org_id', $org_id);
+        return $this->db->get();
     }
 }

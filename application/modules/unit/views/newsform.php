@@ -5,12 +5,12 @@
       <h3>
         <?php 
         if (empty($update_id)) 
-                    $strTitle = 'Add program';
+                    $strTitle = 'Add Unit';
                 else 
-                    $strTitle = 'Edit program';
+                    $strTitle = 'Edit Unit';
                     echo $strTitle;
                     ?>
-                    <a href="<?php echo ADMIN_BASE_URL . 'program'; ?>"><button type="button" class="btn btn-primary btn-lg pull-right"><i class="fa fa-chevron-left"></i>&nbsp;&nbsp;&nbsp;<b>Back</b></button></a>
+                    <a href="<?php echo ADMIN_BASE_URL . 'unit'; ?>"><button type="button" class="btn btn-primary btn-lg pull-right"><i class="fa fa-chevron-left"></i>&nbsp;&nbsp;&nbsp;<b>Back</b></button></a>
        </h3>             
             
     </div>
@@ -34,9 +34,9 @@
                             $hidden = array('hdnId' => $update_id, 'hdnActive' => $news['status']); ////edit case
                         }
                         if (isset($hidden) && !empty($hidden))
-                            echo form_open_multipart(ADMIN_BASE_URL . 'program/submit/' . $update_id, $attributes, $hidden);
+                            echo form_open_multipart(ADMIN_BASE_URL . 'unit/submit/' . $update_id, $attributes, $hidden);
                         else
-                            echo form_open_multipart(ADMIN_BASE_URL . 'program/submit/' . $update_id, $attributes);
+                            echo form_open_multipart(ADMIN_BASE_URL . 'unit/submit/' . $update_id, $attributes);
                         ?>
                   <div class="form-body">
                     
@@ -57,7 +57,7 @@
                                                         $attribute = array('class' => 'control-label col-md-4');
                                                         ?>
                                                         
-                          <?php echo form_label('Program Name<span style="color:red">*</span>', 'name', $attribute); ?>
+                          <?php echo form_label('Unit Name<span style="color:red">*</span>', 'name', $attribute); ?>
                           <div class="col-md-8"> <?php echo form_input($data); ?>  <span id="message"></span></div>
                         </div>
                       </div>
@@ -69,7 +69,7 @@
                     <div class="col-md-6">
                       <div class="col-md-offset-2 col-md-9" style="padding-bottom:15px;">
                        <span style="margin-left:40px"></span> <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>&nbsp;Save</button>
-                        <a href="<?php echo ADMIN_BASE_URL . 'program'; ?>">
+                        <a href="<?php echo ADMIN_BASE_URL . 'unit'; ?>">
                         <button type="button" class="btn green btn-default" style="margin-left:20px;"><i class="fa fa-undo"></i>&nbsp;Cancel</button>
                         </a> </div>
                     </div>

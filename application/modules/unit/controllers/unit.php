@@ -29,7 +29,6 @@ class Unit extends MX_Controller
         } else {
             $data['news'] = $this->_get_data_from_post();
         }
-        
         $data['update_id'] = $update_id;
         $data['view_file'] = 'newsform';
         $this->load->module('template');
@@ -46,6 +45,7 @@ class Unit extends MX_Controller
             $data['name'] = $row->name;
             $data['date'] = $row->date;
             $data['status'] = $row->status;
+            $data['org_id'] = $row->org_id;
         }
         if(isset($data))
             return $data;
@@ -53,6 +53,7 @@ class Unit extends MX_Controller
     
     function _get_data_from_post() {
         $data['name'] = $this->input->post('name');
+        $data['date'] = date('Y-m-d');
         $user_data = $this->session->userdata('user_data');
         $data['org_id'] = $user_data['user_id'];
         return $data;
@@ -63,6 +64,7 @@ class Unit extends MX_Controller
         $update_id = $this->uri->segment(4);
         $data = $this->_get_data_from_post();
         $user_data = $this->session->userdata('user_data');
+
         if ($update_id != 0) {
             $id = $this->_update($update_id,$user_data['user_id'], $data);
         }

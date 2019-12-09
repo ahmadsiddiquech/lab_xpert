@@ -25,7 +25,6 @@ class Mdl_unit extends CI_Model {
 
     function _get_by_arr_id_unit($org_id) {
         $table = $this->get_table();
-        $user_data = $this->session->userdata('user_data');
         $this->db->where('status','1');
         $this->db->where('org_id',$org_id);
         return $this->db->get($table);

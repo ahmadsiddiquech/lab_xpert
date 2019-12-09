@@ -87,7 +87,8 @@
                             $data = array(
                             'name' => 'date',
                             'id' => 'date',
-                            'class' => 'form-control datetimepicker2',
+                            'class' => 'form-control',
+                            'type' => 'date',
                             'required' => 'required',
                             'tabindex' => '3',
                             'value' => $news['date'],

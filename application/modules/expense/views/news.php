@@ -34,6 +34,7 @@
                         <tbody>
                                 <?php
                                 $i = 0;
+                                $amount = 0;
                                 if (isset($news)) {
                                     foreach ($news->result() as
                                             $new) {
@@ -63,7 +64,9 @@
                             </tbody>
                     </table>
                     <div class="pull-right" style="padding-right: 60px">
-                        <h4>Total Expense: <?php echo $amount ?></h4>
+                        <h4>Total Expense: <?php if (isset($amount) && !empty($amount)) {
+                            echo $amount;
+                        }?></h4>
                     </div>
                     </div>
                 </div>
@@ -77,47 +80,47 @@
 
 $(document).ready(function(){
 
-            $(document).on("click", ".view_details", function(event){
-            event.preventDefault();
-            var id = $(this).attr('rel');
-              $.ajax({
-                        type: 'POST',
-                        url: "<?php echo ADMIN_BASE_URL?>expense/detail",
-                        data: {'id': id},
-                        async: false,
-                        success: function(test_body) {
-                        var test_desc = test_body;
-                        $('#myModal').modal('show')
-                        $("#myModal .modal-body").html(test_desc);
-                        }
-                    });
+    $(document).on("click", ".view_details", function(event){
+    event.preventDefault();
+    var id = $(this).attr('rel');
+      $.ajax({
+                type: 'POST',
+                url: "<?php echo ADMIN_BASE_URL?>expense/detail",
+                data: {'id': id},
+                async: false,
+                success: function(test_body) {
+                var test_desc = test_body;
+                $('#myModal').modal('show')
+                $("#myModal .modal-body").html(test_desc);
+                }
             });
+    });
 
-          $(document).off('click', '.delete_record').on('click', '.delete_record', function(e){
-                var id = $(this).attr('rel');
-                e.preventDefault();
-              swal({
-                title : "Are you sure to delete the selected expense?",
-                text : "You will not be able to recover this expense!",
-                type : "warning",
-                showCancelButton : true,
-                confirmButtonColor : "#DD6B55",
-                confirmButtonText : "Yes, delete it!",
-                closeOnConfirm : false
-              },
-                function () {
-                       $.ajax({
-                            type: 'POST',
-                            url: "<?php echo ADMIN_BASE_URL?>expense/delete",
-                            data: {'id': id},
-                            async: false,
-                            success: function() {
-                            location.reload();
-                            }
-                        });
-                swal("Deleted!", "expense has been deleted.", "success");
-              });
-            });
+  $(document).off('click', '.delete_record').on('click', '.delete_record', function(e){
+        var id = $(this).attr('rel');
+        e.preventDefault();
+      swal({
+        title : "Are you sure to delete the selected expense?",
+        text : "You will not be able to recover this expense!",
+        type : "warning",
+        showCancelButton : true,
+        confirmButtonColor : "#DD6B55",
+        confirmButtonText : "Yes, delete it!",
+        closeOnConfirm : false
+      },
+        function () {
+               $.ajax({
+                    type: 'POST',
+                    url: "<?php echo ADMIN_BASE_URL?>expense/delete",
+                    data: {'id': id},
+                    async: false,
+                    success: function() {
+                    location.reload();
+                    }
+                });
+        swal("Deleted!", "expense has been deleted.", "success");
+      });
+    });
 });
 
 </script>

@@ -1,47 +1,45 @@
-<?php // print_r($post['title']); exit(); ?>
-
 <div class="row">
     <div class="col-md-6">
-        <h4 ><b>ID:&nbsp;&nbsp;</b></h4><?php echo $user['id']; ?>
-    </div>
-    <div class="col-md-6">
-        <h4 ><b>test Title:&nbsp;&nbsp;</b></h4><?php echo $user['test_title']; ?>
+        <h4><b>ID:&nbsp;&nbsp;</b></h4><?php echo $user['id']; ?>
     </div>
 </div>
 <div class="row">
     <div class="col-md-6">
-        <h4 ><b>Test Description:&nbsp;&nbsp;</b></h4><?php echo $user['test_description']; ?>
+        <h4><b>Test Code:&nbsp;&nbsp;</b></h4><?php echo $user['test_code']; ?>
     </div>
-     <div class="col-md-6">
-        <h4 ><b>Total Marks:&nbsp;&nbsp;</b></h4><?php echo $user['total_marks']; ?>
+    <div class="col-md-6">
+        <h4><b>Test Title:&nbsp;&nbsp;</b></h4><?php echo $user['name']; ?>
     </div>
 </div>
 <div class="row">
     <div class="col-md-6">
-        <h4 ><b>Program Name:&nbsp;&nbsp;</b></h4><?php echo $user['program_name']; ?>
+        <h4><b>Test Category:&nbsp;&nbsp;</b></h4><?php echo $user['category_name']; ?>
     </div>
     <div class="col-md-6">
-         <h4 ><b>Class Name:&nbsp;&nbsp;</b></h4><?php echo $user['class_name']; ?>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6">
-        <h4 ><b>Subject Name:&nbsp;&nbsp;</b></h4><?php echo $user['subject_name']; ?>
-    </div>
-    <div class="col-md-6">
-         <h4 ><b>Teacher Name:&nbsp;&nbsp;</b></h4><?php echo $user['teacher_name']; ?>
+         <h4><b>Unit:&nbsp;&nbsp;</b></h4><?php echo $user['unit_name']; ?>
     </div>
 </div>
 <div class="row">
     <div class="col-md-6">
-       <h4 ><b>test Date:&nbsp;&nbsp;</b></h4><?php echo $user['test_date']; ?>
+       <h4><b>Male Value:&nbsp;&nbsp;</b></h4><?php echo $user['male_value']; ?>
     </div>
     <div class="col-md-6">
-        <h4 ><b>test Time:&nbsp;&nbsp;</b></h4><?php echo $user['test_time']; ?>
+        <h4><b>Female Value:&nbsp;&nbsp;</b></h4><?php echo $user['female_value']; ?>
     </div>
 </div>
 <div class="row">
     <div class="col-md-6">
-        <h4 ><b>Status:&nbsp;&nbsp;</b></h4><?php echo $user['status']; ?>
+        <h4><b>Child Value:&nbsp;&nbsp;</b></h4><?php echo $user['child_value']; ?>
+    </div>
+    <div class="col-md-6">
+        <h4><b>Charges:&nbsp;&nbsp;</b></h4><?php echo $user['charges']; ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h4><b>Delivery Time:&nbsp;&nbsp;</b></h4><?php echo $user['delivery_time']; ?>
+    </div>
+    <div class="col-md-6">
+        <h4><b>Status:&nbsp;&nbsp;</b></h4><?php echo $user['status']; ?>
     </div>
 </div>

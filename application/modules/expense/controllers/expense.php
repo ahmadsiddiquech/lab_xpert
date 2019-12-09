@@ -1,18 +1,20 @@
 <?php
 
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+if ( ! defined('BASEPATH')){
+    exit('No direct script access allowed');
+}
+
 class Expense extends MX_Controller
 {
+    function __construct() {
+        parent::__construct();
+        Modules::run('site_security/is_login');
+    }
 
-function __construct() {
-parent::__construct();
-Modules::run('site_security/is_login');
-//Modules::run('site_security/has_permission');
-
-}
     function index() {
         $this->manage();
     }
+
     function manage() {
         $data['news'] = $this->_get('id desc');
         $data['view_file'] = 'news';
@@ -33,7 +35,6 @@ Modules::run('site_security/is_login');
         $this->template->admin($data);
     }
     
-
     function _get_data_from_db($update_id) {
         $where['expense.id'] = $update_id;
         $query = $this->_get_by_arr_id($where);
@@ -62,22 +63,23 @@ Modules::run('site_security/is_login');
     }
 
     function submit() {
-            $update_id = $this->uri->segment(4);
-            $data = $this->_get_data_from_post();
-            $user_data = $this->session->userdata('user_data');
-            if ($update_id != 0) {
+        $update_id = $this->uri->segment(4);
+        $data = $this->_get_data_from_post();
+        $user_data = $this->session->userdata('user_data');
+        if ($update_id != 0) {
 
-                $id = $this->_update($update_id,$user_data['user_id'], $data);
-            }
-            else
-            {
-                $id = $this->_insert($data);
-            }
-                $this->session->set_flashdata('message', 'expense'.' '.DATA_SAVED);										
-		        $this->session->set_flashdata('status', 'success');
-            
-            redirect(ADMIN_BASE_URL . 'expense');
+            $id = $this->_update($update_id,$user_data['user_id'], $data);
         }
+        else
+        {
+            $id = $this->_insert($data);
+        }
+            $this->session->set_flashdata('message', 'expense'.' '.DATA_SAVED);										
+	        $this->session->set_flashdata('status', 'success');
+        
+        redirect(ADMIN_BASE_URL . 'expense');
+    }
+
     function delete() {
         $delete_id = $this->input->post('id');
         $user_data = $this->session->userdata('user_data');
@@ -90,26 +92,10 @@ Modules::run('site_security/is_login');
         $data['user'] = $this->_get_data_from_db($update_id);
         $this->load->view('detail', $data);
     }
-
-    function _getItemById($id) {
-        $this->load->model('mdl_expense');
-        return $this->mdl_expense->_getItemById($id);
-    }
-
-    function _set_publish($arr_col) {
-        $this->load->model('mdl_expense');
-        $this->mdl_expense->_set_publish($arr_col);
-    }
-
-    function _set_unpublish($arr_col) {
-        $this->load->model('mdl_expense');
-        $this->mdl_expense->_set_unpublish($arr_col);
-    }
-
+    
     function _get($order_by) {
         $this->load->model('mdl_expense');
-        $query = $this->mdl_expense->_get($order_by);
-        return $query;
+        return $this->mdl_expense->_get($order_by);
     }
 
     function _get_by_arr_id($arr_col) {
@@ -135,10 +121,5 @@ Modules::run('site_security/is_login');
     function _delete($arr_col, $org_id) {       
         $this->load->model('mdl_expense');
         $this->mdl_expense->_delete($arr_col, $org_id);
-    }
-
-    function _get_by_arr_id_programs($org_id){
-        $this->load->model('mdl_expense');
-        return $this->mdl_expense->_get_by_arr_id_programs($org_id);
     }
 }

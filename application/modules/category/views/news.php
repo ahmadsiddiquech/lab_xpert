@@ -1,5 +1,5 @@
 <div class="content-wrapper">
-    <h3>Classes<a href="classes/create"><button type="button" class="btn btn-lg btn-primary pull-right"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;<b>Add Class</b></button></a></h3>
+    <h3>Category<a href="category/create"><button type="button" class="btn btn-lg btn-primary pull-right"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;<b>Add Category</b></button></a></h3>
 
     <div class="container-fluid">
 
@@ -13,9 +13,9 @@
                         <thead class="bg-th">
                         <tr class="bg-col">
                         <th class="sr">S.No</th>
-                        <th>Class Name</th>
-                        <th>Program Name</th>
+                        <th>Category Name</th>
                         <th class="" style="width:400px;">Description</th>
+                        <th>Carry Out</th>
                         <th class="" style="width:300px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actions</th>
                         </tr>
                         </thead>
@@ -26,18 +26,16 @@
                                     foreach ($news->result() as
                                             $new) {
                                         $i++;
-
-                                    $std_url = ADMIN_BASE_URL . 'classes/std_list/' . $new->id.'/'.$new->name;
-                                        $set_publish_url = ADMIN_BASE_URL . 'classes/set_publish/' . $new->id;
-                                        $set_unpublish_url = ADMIN_BASE_URL . 'classes/set_unpublish/' . $new->id ;
-                                        $edit_url = ADMIN_BASE_URL . 'classes/create/' . $new->id ;
-                                        $delete_url = ADMIN_BASE_URL . 'classes/delete/' . $new->id;
+                                        $set_publish_url = ADMIN_BASE_URL . 'category/set_publish/' . $new->id;
+                                        $set_unpublish_url = ADMIN_BASE_URL . 'category/set_unpublish/' . $new->id ;
+                                        $edit_url = ADMIN_BASE_URL . 'category/create/' . $new->id ;
+                                        $delete_url = ADMIN_BASE_URL . 'category/delete/' . $new->id;
                                         ?>
                                     <tr id="Row_<?=$new->id?>" class="odd gradeX " >
                                         <td width='2%'><?php echo $i;?></td>
                                         <td><?php echo wordwrap($new->name , 50 , "<br>\n")  ?></td>
-                                        <td><?php echo $new->program_name ?></td>
                                         <td><?php echo $new->description ?></td>
+                                        <td><?php echo $new->carry_out ?></td>
                                         <td class="table_action">
 
                                         <a class="btn yellow c-btn view_details" rel="<?=$new->id?>"><i class="fa fa-list"  title="See Detail"></i></a>
@@ -54,16 +52,14 @@
                                         $icon = '<i class="fa fa-long-arrow-down"></i>';
                                         $iconbgclass = ' btn default c-btn';
                                         }
-
-                                        echo anchor($std_url, '<i class="fa fa-mail-forward"></i>', array('class' => 'action_edit btn blue c-btn','title' => 'View Students'));
-
+                                        
                                         echo anchor("javascript:;",$icon, array('class' => 'action_publish' . $publish_class . $iconbgclass,
 
                                         'title' => $publis_title,'rel' => $new->id,'id' => $new->id, 'status' => $new->status));
 
-                                        echo anchor($edit_url, '<i class="fa fa-edit"></i>', array('class' => 'action_edit btn blue c-btn','title' => 'Edit classes'));
+                                        echo anchor($edit_url, '<i class="fa fa-edit"></i>', array('class' => 'action_edit btn blue c-btn','title' => 'Edit category'));
 
-                                        echo anchor('"javascript:;"', '<i class="fa fa-times"></i>', array('class' => 'delete_record btn red c-btn', 'rel' => $new->id, 'title' => 'Delete classes'));
+                                        echo anchor('"javascript:;"', '<i class="fa fa-times"></i>', array('class' => 'delete_record btn red c-btn', 'rel' => $new->id, 'title' => 'Delete category'));
                                         ?>
                                         </td>
                                     </tr>
@@ -88,7 +84,7 @@ event.preventDefault();
 var id = $(this).attr('rel');
   $.ajax({
             type: 'POST',
-            url: "<?php ADMIN_BASE_URL?>classes/detail",
+            url: "<?php ADMIN_BASE_URL?>category/detail",
             data: {'id': id},
             async: false,
             success: function(test_body) {
@@ -103,8 +99,8 @@ $(document).off('click', '.delete_record').on('click', '.delete_record', functio
     var id = $(this).attr('rel');
     e.preventDefault();
   swal({
-    title : "Are you sure to delete the selected classes?",
-    text : "You will not be able to recover this classes!",
+    title : "Are you sure to delete the selected category?",
+    text : "You will not be able to recover this category!",
     type : "warning",
     showCancelButton : true,
     confirmButtonColor : "#DD6B55",
@@ -114,14 +110,14 @@ $(document).off('click', '.delete_record').on('click', '.delete_record', functio
     function () {
            $.ajax({
                 type: 'POST',
-                url: "<?php echo ADMIN_BASE_URL?>classes/delete",
+                url: "<?php echo ADMIN_BASE_URL?>category/delete",
                 data: {'id': id},
                 async: false,
                 success: function() {
                 location.reload();
                 }
             });
-    swal("Deleted!", "classes has been deleted.", "success");
+    swal("Deleted!", "category has been deleted.", "success");
   });
 });
 
@@ -131,7 +127,7 @@ $(document).off("click",".action_publish").on("click",".action_publish", functio
     var status = $(this).attr('status');
      $.ajax({
         type: 'POST',
-        url: "<?= ADMIN_BASE_URL ?>classes/change_status",
+        url: "<?= ADMIN_BASE_URL ?>category/change_status",
         data: {'id': id, 'status': status},
         async: false,
         success: function(result) {
@@ -145,7 +141,7 @@ $(document).off("click",".action_publish").on("click",".action_publish", functio
                 $('#'+id).removeClass('green');
                 $('#'+id).find('i.fa-long-arrow-up').removeClass('fa-long-arrow-up').addClass('fa-long-arrow-down');
             }
-            $("#listing").load('<?php ADMIN_BASE_URL?>classes/manage');
+            $("#listing").load('<?php ADMIN_BASE_URL?>category/manage');
             toastr.success('Status Changed Successfully');
         }
     });
