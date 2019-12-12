@@ -85,10 +85,9 @@
                           <div class="form-group">
                             <div class="control-label col-md-4">
                               <label>Category</label>
-                              <span style="color:red">*</span>
                             </div>
                             <div class="col-md-8">
-                              <select name="category" id="category" class="form-control" required tabindex="3">
+                              <select name="category" id="category" class="form-control" tabindex="3">
                               <option value="">Select</option>
                               <?php if(isset($category) && !empty($category))
                               foreach ($category as $key => $value):?>
@@ -102,10 +101,9 @@
                           <div class="form-group">
                             <div class="control-label col-md-4">
                               <label>Unit</label>
-                              <span style="color:red">*</span>
                             </div>
                             <div class="col-md-8">
-                              <select name="unit" id="unit" class="form-control" required tabindex="4">
+                              <select name="unit" id="unit" class="form-control" tabindex="4">
                               <option value="">Select</option>
                               <?php if(isset($unit) && !empty($unit))
                               foreach ($unit as $key => $value):?>
@@ -197,11 +195,29 @@
                         <div class="form-group">
                           <?php
                                 $data = array(
+                                'name' => 'sample',
+                                'id' => 'sample',
+                                'class' => 'form-control',
+                                'type' => 'text',
+                                'tabindex' => '9',
+                                'data-parsley-maxlength'=>TEXT_BOX_RANGE,
+                               'value' => $news['sample'],
+                                );
+                                $attribute = array('class' => 'control-label col-md-4');
+                                ?>
+                          <?php echo form_label('Sample', 'sample', $attribute); ?>
+                          <div class="col-md-8"> <?php echo form_input($data); ?> </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-5">
+                        <div class="form-group">
+                          <?php
+                                $data = array(
                                 'name' => 'charges',
                                 'id' => 'charges',
                                 'class' => 'form-control',
                                 'type' => 'text',
-                                'tabindex' => '9',
+                                'tabindex' => '10',
                                 'required' => 'required',
                                 'data-parsley-maxlength'=>TEXT_BOX_RANGE,
                                'value' => $news['charges'],

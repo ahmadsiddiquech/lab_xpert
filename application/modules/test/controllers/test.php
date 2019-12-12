@@ -61,6 +61,7 @@ class Test extends MX_Controller
             $data['child_value'] = $row->child_value;
             $data['delivery_time'] = $row->delivery_time;
             $data['charges'] = $row->charges;
+            $data['sample'] = $row->sample;
             $data['status'] = $row->status;
             $data['org_id'] = $row->org_id;
         }
@@ -88,6 +89,7 @@ class Test extends MX_Controller
         $data['child_value'] = $this->input->post('child_value');
         $data['delivery_time'] = $this->input->post('delivery_time');
         $data['charges'] = $this->input->post('charges');
+        $data['sample'] = $this->input->post('sample');
 
         $user_data = $this->session->userdata('user_data');
         $data['org_id'] = $user_data['user_id'];

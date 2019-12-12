@@ -99,7 +99,7 @@
                                       'name' => 'age',
                                       'id' => 'age',
                                       'class' => 'form-control',
-                                      'type' => 'number',
+                                      'type' => 'text',
                                       'required' => 'required',
                                       'tabindex' => '3',
                                       'value' => $news['age'],
@@ -296,7 +296,7 @@
                           </div>
                         </div>
                     </div>
-                    <button class="btn btn-primary add_test" tabindex="15">Add</button>
+                    <button class="btn btn-primary add_test btn-lg" tabindex="15" style="border-radius: 7px !important;padding-left: 30px;padding-right: 30px;font-size: 20px;">Add</button>
                     </div>
                     <div class="row" style="padding-top: 20px;">
                       <div class="col-md-1">
@@ -336,7 +336,7 @@
                         </div>
                         <div class="row">
                           <div class="col-md-6">
-                            <h4 style="text-align: right;">Net Amount</h4>
+                            <h4 style="text-align: right;">Grand Total</h4>
                           </div>
                           <div class="col-md-4">
                             <input type="number" readonly name="net_amount" value="0" class="form-control" style="text-align: center;">
@@ -344,7 +344,7 @@
                         </div>
                         <div class="row">
                           <div class="col-md-6">
-                            <h4 style="text-align: right;">Paid Amount</h4>
+                            <h4 style="text-align: right;">Cash Received</h4>
                           </div>
                           <div class="col-md-4">
                             <input type="number" name="paid_amount" id="paid_amount" class="form-control" value="0" style="text-align: center;" tabindex="17">
@@ -352,7 +352,7 @@
                         </div>
                         <div class="row">
                           <div class="col-md-6">
-                            <h4 style="text-align: right;">Remaining</h4>
+                            <h4 style="text-align: right;">Change</h4>
                           </div>
                           <div class="col-md-4">
                             <input type="number" readonly name="remaining" value="0" class="form-control" style="text-align: center;">
@@ -370,8 +370,7 @@
                     <div class="col-md-12">
                       <div class="col-md-offset-2 col-md-9" style="padding-bottom:15px;padding-top:15px;">
                        <span style="margin-left:40px"></span>
-                       <button type="submit" id="button1" class="btn btn-success btn-lg" tabindex="18" style="margin-left:20px; border-radius: 7px !important; padding: 20px; font-size: 20px;"><i class="fa fa-check"></i>&nbsp;Save</button>
-                       <button type="submit" id="button1" class="btn btn-success btn-lg" tabindex="19" style="margin-left:20px; border-radius: 7px !important; padding: 20px;font-size: 20px;"><i class="fa fa-print"></i>&nbsp;Print</button>
+                       <button type="submit" id="button1" class="btn btn-success btn-lg" tabindex="19" style="margin-left:20px; border-radius: 7px !important; padding: 20px;font-size: 20px;"><i class="fa fa-print"></i>&nbsp;Save & Print</button>
                        <a href="<?php echo ADMIN_BASE_URL . 'invoice/create'; ?>">
                         <button type="button" class="btn btn-info btn-lg" style="margin-left:20px; border-radius: 7px !important; padding: 20px;font-size: 20px;" tabindex="20"><i class="fa fa-file"></i>&nbsp;New</button>
                         </a>
@@ -442,13 +441,8 @@ $('input[name=discount]').keyup(function() {
 $('input[name=paid_amount]').keyup(function() {
     var net_amount = parseInt($('input[name=net_amount]').val());
     var paid_amount = $(this).val();
-    var remaining = net_amount - paid_amount;
-    if (remaining > 0) {
+    var remaining = paid_amount - net_amount;
       $('input[name=remaining]').val(remaining);
-    }
-    else {
-      $('input[name=remaining]').val(0);
-    }
     
 });
 });

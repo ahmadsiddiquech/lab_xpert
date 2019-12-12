@@ -1,17 +1,16 @@
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 <style type="text/css">
-  table {
-    border: 2px solid black;
+  @media print {
+    html, body {
+        width: 80mm;
+        font-family: 'Roboto', sans-serif;
+    }
   }
   body {
-        font-family: 'Raleway', serif;
-      }
+    font-family: 'Roboto', sans-serif;
+  }
   .border_bottom {
     border-bottom: 2px solid black;
-  }
-  .border_left {
-    border-left: 2px solid #919191;
-    padding-left: 5px;
   }
   .border1 {
     border-left:1px solid black;
@@ -26,43 +25,50 @@
       <table width="100%">
       <tbody>
         <tr>
-          <th colspan="100%" align="center">Customer Invoice</th>
+          <th colspan="100%" align="center">Lab invoice</th>
         </tr>
         <tr>
-          <td align="right"><img src="<?php echo STATIC_ADMIN_IMAGE.'logo.png'?>" height="60px;"></td>
-          <td colspan="4" align="center"><b style="font-size: 22px;"> <?php echo $invoice[0]['org_name'].' , '.$invoice[0]['org_address'];?></b><br><?php echo $invoice[0]['org_phone'];?></td>
+          <td colspan="5" align="center"><b style="font-size: 22px;"> <?php echo $invoice[0]['org_name']?></b><br><?php echo $invoice[0]['org_address']?><br>Tel: <?php echo $invoice[0]['org_phone'];?></td>
         </tr>
         <tr><td>&nbsp;</td></tr>
         <tr>
           <th class="border_bottom" colspan="100%"></th>
         </tr>
         <tr>
-          <td colspan="2">Invoice Id: <b><?php echo $invoice[0]['invoice_id'];?></b></td>
-          <td colspan="3" align="right">Issue Date: <b><?php echo $invoice[0]['date_time'];?></b></td>
+          <td colspan="100%">issue Date: <b><?php echo $invoice[0]['date_time'];?></b></td>
         </tr>
         <tr>
-          <td colspan="2">Reference No: <b><?php echo $invoice[0]['p_id'];?></b></td>
-          <td colspan="3" align="right">Delivery Date : <b><?php echo $invoice[0]['delivery_date'];?></b></td>
+          <td colspan="100%">Delivery Date : <b><?php echo $invoice[0]['delivery_date'];?></b></td>
+        </tr>
+        <tr>
+          <td colspan="100%">invoice id: <b><?php echo $invoice[0]['invoice_id'];?></b></td>
+        </tr>
+        <tr>
+          <td colspan="100%">Reference No: <b><?php echo $invoice[0]['p_id'];?></b></td>
         </tr>
         <tr><td colspan="100%">&nbsp;</td></tr>
         <tr>
-          <td colspan="2">Patient Name: <b><?php echo $invoice[0]['name'];?></b></td>
-          <td colspan="3" align="right">Referred By: <b><?php echo $invoice[0]['referred_by']; ?></b></td>
+          <td colspan="100%">Patient Name: <b><?php echo $invoice[0]['name'];?></b></td>
+        </tr>
+        <tr>
+          <td colspan="100%">Age/Sex: <b><?php echo $invoice[0]['age'].'/'.$invoice[0]['gender'];?></b></td>
         </tr>
         <tr>
           <td colspan="100%">Patient Phone: <b><?php echo $invoice[0]['mobile'];?></b></td>
         </tr>
+        <tr><td colspan="100%">&nbsp;</td></tr>
+        <tr>
+          <td colspan="100%">Referred By: <b><?php echo $invoice[0]['referred_by']; ?></b></td>
+        </tr>
         <tr><td colspan="100%"><hr></td></tr>
         <tr align="center">
-          <th colspan="1" class="border1"><b>Sr. No</th>
-          <th colspan="1" class="border1"><b>Category</th>
+          <th colspan="2" class="border1"><b>Category</th>
           <th colspan="2" class="border1">Test</th>
           <th colspan="1" class="border1" style="border-right: 1px solid black"><b>Price</th>
         </tr>
         <?php foreach ($invoice as $key => $value) { ?>
         <tr align="center">
-          <td colspan="1" class="border1"> <?php echo $x;?></td>
-          <td colspan="1" class="border1"> <?php echo $value['category_name'];?></td>
+          <td colspan="2" class="border1"> <?php echo $value['category_name'];?></td>
           <td colspan="2" class="border1"> <?php echo $value['test_name'];?></td>
           <td colspan="1" class="border1" style="border-right: 1px solid black"> <?php echo $value['charges'];?></td>
           <th></th>
@@ -71,115 +77,114 @@
       <tr><td colspan="100%"><hr></td></tr>
         <tr>
           <td colspan="4" align="right"><b>Total Amount: </b></td>
-          <td colspan="1" align="right"><?php echo $invoice[0]['total_pay']; ?></td>
+          <td colspan="1" align="right"><b>Rs.<?php echo $invoice[0]['total_pay']; ?></b></td>
         </tr>
         <tr>
           <td colspan="4" align="right"><b>Discount: </b></td>
-          <td colspan="1" align="right"><?php echo $invoice[0]['discount']; ?></td>
+          <td colspan="1" align="right"><b>Rs.<?php echo $invoice[0]['discount']; ?></b></td>
         </tr>
         <tr>
-          <td colspan="4" align="right"><b>Net Amount: </b></td>
-          <td colspan="1" align="right"><?php echo $invoice[0]['net_amount']; ?></td>
+          <td colspan="4" align="right"><b>Grand Total: </b></td>
+          <td colspan="1" align="right"><b>Rs.<?php echo $invoice[0]['net_amount']; ?></b></td>
         </tr>
         <tr>
           <td colspan="4" align="right"><b>Cash Recieved: </b></td>
-          <td colspan="1" align="right"><?php echo $invoice[0]['paid_amount']; ?></td>
+          <td colspan="1" align="right"><b>Rs.<?php echo $invoice[0]['paid_amount']; ?></b></td>
         </tr>
         <tr>
-          <td colspan="4" align="right"><b>Balance: </b></td>
-          <td colspan="1" align="right"><?php echo $invoice[0]['remaining']; ?></td>
+          <td colspan="4" align="right"><b>Change: </b></td>
+          <td colspan="1" align="right"><b>Rs.<?php echo $invoice[0]['remaining']; ?></b></td>
         </tr>
         <tr>
           <th class="border_bottom" colspan="100%"></th>
         </tr>
-        <tr><td colspan="100%">&nbsp;</td></tr>
-        <tr><td colspan="100%">&nbsp;</td></tr>
-        <tr><td colspan="100%">&nbsp;</td></tr>
-        <tr style="text-align:center;">
-          <th colspan="2" style="border-top: 1px solid black">Entered By</th>
-          <th></th>
-          <th colspan="2" style="border-top: 1px solid black">Signature</th>
-        </tr>
+        
       </tbody>
     </table>
   </td>
+</tr>
+<tr><td colspan="100%">&nbsp;</td></tr>
+<tr><td colspan="100%"><hr></td></tr>
+<tr><td colspan="100%">&nbsp;</td></tr>
+<tr><td colspan="100%">&nbsp;</td></tr>
+
+<tr>
     <td>
       <table width="100%">
       <tbody>
         <tr>
-          <th colspan="100%" align="center">Lab Invoice</th>
+          <th colspan="100%" align="center">Customer invoice</th>
         </tr>
         <tr>
-          <td align="right"><img src="<?php echo STATIC_ADMIN_IMAGE.'logo.png'?>" height="60px;"></td>
-          <td colspan="4" align="center"><b style="font-size: 22px;"> <?php echo $invoice[0]['org_name'].' , '.$invoice[0]['org_address'];?></b><br><?php echo $invoice[0]['org_phone'];?></td>
+          <td colspan="5" align="center"><b style="font-size: 22px;"> <?php echo $invoice[0]['org_name']?></b><br><?php echo $invoice[0]['org_address']?><br>Tel: <?php echo $invoice[0]['org_phone'];?></td>
         </tr>
         <tr><td>&nbsp;</td></tr>
         <tr>
           <th class="border_bottom" colspan="100%"></th>
         </tr>
         <tr>
-          <td colspan="2">Invoice Id: <b><?php echo $invoice[0]['invoice_id'];?></b></td>
-          <td colspan="3" align="right">Issue Date: <b><?php echo $invoice[0]['date_time'];?></b></td>
+          <td colspan="100%">issue Date: <b><?php echo $invoice[0]['date_time'];?></b></td>
         </tr>
         <tr>
-          <td colspan="2">Reference No: <b><?php echo $invoice[0]['p_id'];?></b></td>
-          <td colspan="3" align="right">Delivery Date : <b><?php echo $invoice[0]['delivery_date'];?></b></td>
+          <td colspan="100%">Delivery Date : <b><?php echo $invoice[0]['delivery_date'];?></b></td>
+        </tr>
+        <tr>
+          <td colspan="100%">invoice id: <b><?php echo $invoice[0]['invoice_id'];?></b></td>
+        </tr>
+        <tr>
+          <td colspan="100%">Reference No: <b><?php echo $invoice[0]['p_id'];?></b></td>
         </tr>
         <tr><td colspan="100%">&nbsp;</td></tr>
         <tr>
-          <td colspan="2">Patient Name: <b><?php echo $invoice[0]['name'];?></b></td>
-          <td colspan="3" align="right">Referred By: <b><?php echo $invoice[0]['referred_by']; ?></b></td>
+          <td colspan="100%">Patient Name: <b><?php echo $invoice[0]['name'];?></b></td>
+        </tr>
+        <tr>
+          <td colspan="100%">Age/Sex: <b><?php echo $invoice[0]['age'].'/'.$invoice[0]['gender'];?></b></td>
         </tr>
         <tr>
           <td colspan="100%">Patient Phone: <b><?php echo $invoice[0]['mobile'];?></b></td>
         </tr>
+        <tr><td colspan="100%">&nbsp;</td></tr>
+        <tr>
+          <td colspan="100%">Referred By: <b><?php echo $invoice[0]['referred_by']; ?></b></td>
+        </tr>
         <tr><td colspan="100%"><hr></td></tr>
         <tr align="center">
-          <th colspan="1" class="border1"><b>Sr. No</th>
-          <th colspan="1" class="border1"><b>Category</th>
+          <th colspan="2" class="border1"><b>Category</th>
           <th colspan="2" class="border1">Test</th>
           <th colspan="1" class="border1" style="border-right: 1px solid black"><b>Price</th>
         </tr>
         <?php foreach ($invoice as $key => $value) { ?>
         <tr align="center">
-          <td colspan="1" class="border1"> <?php echo $y;?></td>
-          <td colspan="1" class="border1"> <?php echo $value['category_name'];?></td>
+          <td colspan="2" class="border1"> <?php echo $value['category_name'];?></td>
           <td colspan="2" class="border1"> <?php echo $value['test_name'];?></td>
           <td colspan="1" class="border1" style="border-right: 1px solid black"> <?php echo $value['charges'];?></td>
           <th></th>
         </tr>
-      <?php $y++; }  ?>
+      <?php $x++; }  ?>
       <tr><td colspan="100%"><hr></td></tr>
         <tr>
           <td colspan="4" align="right"><b>Total Amount: </b></td>
-          <td colspan="1" align="right"><?php echo $invoice[0]['total_pay']; ?></td>
+          <td colspan="1" align="right"><b>Rs.<?php echo $invoice[0]['total_pay']; ?></b></td>
         </tr>
         <tr>
           <td colspan="4" align="right"><b>Discount: </b></td>
-          <td colspan="1" align="right"><?php echo $invoice[0]['discount']; ?></td>
+          <td colspan="1" align="right"><b>Rs.<?php echo $invoice[0]['discount']; ?></b></td>
         </tr>
         <tr>
-          <td colspan="4" align="right"><b>Net Amount: </b></td>
-          <td colspan="1" align="right"><?php echo $invoice[0]['net_amount']; ?></td>
+          <td colspan="4" align="right"><b>Grand Total: </b></td>
+          <td colspan="1" align="right"><b>Rs.<?php echo $invoice[0]['net_amount']; ?></b></td>
         </tr>
         <tr>
           <td colspan="4" align="right"><b>Cash Recieved: </b></td>
-          <td colspan="1" align="right"><?php echo $invoice[0]['paid_amount']; ?></td>
+          <td colspan="1" align="right"><b>Rs.<?php echo $invoice[0]['paid_amount']; ?></b></td>
         </tr>
         <tr>
-          <td colspan="4" align="right"><b>Balance: </b></td>
-          <td colspan="1" align="right"><?php echo $invoice[0]['remaining']; ?></td>
+          <td colspan="4" align="right"><b>Change: </b></td>
+          <td colspan="1" align="right"><b>Rs.<?php echo $invoice[0]['remaining']; ?></b></td>
         </tr>
         <tr>
           <th class="border_bottom" colspan="100%"></th>
-        </tr>
-        <tr><td colspan="100%">&nbsp;</td></tr>
-        <tr><td colspan="100%">&nbsp;</td></tr>
-        <tr><td colspan="100%">&nbsp;</td></tr>
-        <tr style="text-align:center;">
-          <th colspan="2" style="border-top: 1px solid black">Entered By</th>
-          <th></th>
-          <th colspan="2" style="border-top: 1px solid black">Signature</th>
         </tr>
       </tbody>
     </table>
@@ -187,7 +192,7 @@
   </tr>
 </table>
 <div>
-<b> Powered by XpertSpot </b> <b style="float: right;"> Powered by XpertSpot </b>
+<b> Powered by XpertSpot +92-300-2660908</b>
 </div>
 </body>
 <script type="text/javascript">

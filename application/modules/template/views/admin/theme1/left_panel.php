@@ -79,6 +79,13 @@
                     <span>New Invoice</span>
                   </a>
                 </li>
+                <li class="<?php if($curr_url == 'invoice/manage'){echo 'active';}    ?>">
+                  <a href="<?php $controller='invoice/manage';
+                    echo ADMIN_BASE_URL . $controller ?>">
+                    <em class="fa fa-file-o"></em>
+                    <span>View Report</span>
+                  </a>
+                </li>
                 <li class="<?php if($curr_url == 'patient'){echo 'active';}    ?>">
                   <a href="<?php $controller='patient';
                     echo ADMIN_BASE_URL . $controller ?>">
