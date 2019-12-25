@@ -1,3 +1,8 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
 <style type="text/css">
   th, td, tr {
     border-collapse: collapse;
@@ -271,8 +276,8 @@
                               <label>Category</label>
                             </div>
                             <div class="col-md-9">
-                              <select name="category" id="category" class="form-control" tabindex="13">
-                              <option value="">Select</option>
+                              <select name="category" id="category" class="form-control chosen" tabindex="13">
+                              <option value=""></option>
                               <?php if(isset($category) && !empty($category))
                               foreach ($category as $key => $value):?>
                                 <option <?php if(isset($news['category_id']) && $news['category_id'] == $value['id']) echo "selected"; ?> value="<?php echo $value['id'].','.$value['name'] ?>"><?=$value['name'];?></option>
@@ -287,8 +292,8 @@
                         $attribute = array('class' => 'control-label col-md-3');
                         echo form_label('Test', 'test', $attribute);?>
                         <div class="col-md-9">
-                          <select class="form-control" id="test" name="test" tabindex="14">
-                            <option value="">Select</option>
+                          <select class="form-control " id="test" name="test" tabindex="14">
+                            <option value="">Salect</option>
                             <?php if(isset($news['test_id']) && !empty($news['test_id'])) { ?>
                             <option selected value="<?php echo $news['test_id'].','.$news['test_name']; ?>"><?php echo $news['test_name'];?></option>
                           <?php } ?>
@@ -301,13 +306,14 @@
                     <div class="row" style="padding-top: 20px;">
                       <div class="col-md-1">
                       </div>
-                      <div class="col-md-8">
+                      <div class="col-md-10">
                       <table style="width: 100%;">
                       <thead>
                        <tr>
                         <th>Category Name</th>
                         <th>Test Name</th>
                         <th>Charges</th>
+                        <th>Action</th>
                        </tr>
                       </thead>
                       <tbody id="table_data">
@@ -322,7 +328,7 @@
                           <div class="col-md-6">
                             <h4 style="text-align: right;">Total Payment</h4>
                           </div>
-                          <div class="col-md-4">
+                          <div class="col-md-6">
                             <input type="number" readonly name="total_pay" value="0" class="form-control" style="text-align: center;">
                           </div>
                         </div>
@@ -330,7 +336,7 @@
                           <div class="col-md-6">
                             <h4 style="text-align: right;">Discount</h4>
                           </div>
-                          <div class="col-md-4">
+                          <div class="col-md-6">
                             <input type="number" name="discount" id="discount" class="form-control" value="0" style="text-align: center;" tabindex="16">
                           </div>
                         </div>
@@ -338,7 +344,7 @@
                           <div class="col-md-6">
                             <h4 style="text-align: right;">Grand Total</h4>
                           </div>
-                          <div class="col-md-4">
+                          <div class="col-md-6">
                             <input type="number" readonly name="net_amount" value="0" class="form-control" style="text-align: center;">
                           </div>
                         </div>
@@ -346,7 +352,7 @@
                           <div class="col-md-6">
                             <h4 style="text-align: right;">Cash Received</h4>
                           </div>
-                          <div class="col-md-4">
+                          <div class="col-md-6">
                             <input type="number" name="paid_amount" id="paid_amount" class="form-control" value="0" style="text-align: center;" tabindex="17">
                           </div>
                         </div>
@@ -354,7 +360,7 @@
                           <div class="col-md-6">
                             <h4 style="text-align: right;">Change</h4>
                           </div>
-                          <div class="col-md-4">
+                          <div class="col-md-6">
                             <input type="number" readonly name="remaining" value="0" class="form-control" style="text-align: center;">
                           </div>
                         </div>
@@ -399,6 +405,12 @@
 
 
 <script>
+
+  function delete_row(x){
+    var row_id = x.parentNode.parentNode.rowIndex;
+    document.getElementById("table_data").deleteRow(row_id-1);
+  };
+
   $(document).ready(function(){
   $("#category").change(function () {
         var category = this.value;
@@ -431,6 +443,18 @@ var total_pay = $('input[name=total_pay]').val();
 });
 });
 
+$(document).on("click", ".delete", function(event){
+event.preventDefault();
+  var amount = $(this).attr('amount');
+  var total_pay = $('input[name=total_pay]').val();
+  $('input[name=total_pay]').val(total_pay-amount);
+  var net_amount = $('input[name=net_amount]').val();
+  $('input[name=net_amount]').val(net_amount-amount);
+  var remaining = $('input[name=remaining]').val();
+  $('input[name=remaining]').val(remaining-amount);
+
+});
+
 $('input[name=discount]').keyup(function() {
     var total_pay = parseInt($('input[name=total_pay]').val());
     var discount = $(this).val();
@@ -445,5 +469,9 @@ $('input[name=paid_amount]').keyup(function() {
       $('input[name=remaining]').val(remaining);
     
 });
+$(".chosen").chosen();
 });
+
+
+
 </script>

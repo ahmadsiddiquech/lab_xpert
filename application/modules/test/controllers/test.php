@@ -94,6 +94,7 @@ class Test extends MX_Controller
         $user_data = $this->session->userdata('user_data');
         $data['org_id'] = $user_data['user_id'];
         return $data;
+        print_r($data);exit();
 
     }
 

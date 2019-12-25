@@ -83,31 +83,31 @@ body {font-family: Verdana, sans-serif;}
 </style>
 
 <div class="row" style="padding-left:40px;padding-bottom: 30px;padding-top: 30px;">
-    <div class="col-md-3" onclick="location.href='teacher';">
-        <div class="card text-white col-md-10 shadow" style="background-color: rgb(255, 189, 53); border-radius: 5px;">
+    <div class="col-md-3" onclick="location.href='';">
+        <div class="card text-white col-md-12 shadow" style="background-color: rgb(255, 189, 53); border-radius: 5px;">
             <div class="card-body ">
-                <h3 class="card-text"><center>Total Teachers<br><?php echo $teacher; ?></center></h3>
+                <h3 class="card-text"><center>Total<br>Test<br><?php echo $teacher; ?></center></h3>
             </div>
         </div>
     </div>
-    <div class="col-md-3" onclick="location.href='parents';" >
-        <div class="card text-white  col-md-10 shadow" style="background-color: rgb(2, 156, 252); border-radius: 5px;">
+    <div class="col-md-3" onclick="location.href='';" >
+        <div class="card text-white  col-md-12 shadow" style="background-color: rgb(2, 156, 252); border-radius: 5px;">
             <div class="card-body">
-                <h3 class="card-text"><center>Total Parents<br><?php echo $parent; ?></center></h3>
+                <h3 class="card-text"><center>Total<br>Unit<br><?php echo $parent; ?></center></h3>
             </div>
         </div>
     </div>
-    <div class="col-md-3" onclick="location.href='student';">
-        <div class="card text-white col-md-10 shadow" style="background-color: rgb(115, 96, 237); border-radius: 5px;">
+    <div class="col-md-3" onclick="location.href='';">
+        <div class="card text-white col-md-12 shadow" style="background-color: rgb(115, 96, 237); border-radius: 5px;">
             <div class="card-body">
-                <h3 class="card-text"><center>Total Students<br><?php echo $student; ?></center></h3>
+                <h3 class="card-text"><center>Total<br>Category<br><?php echo $student; ?></center></h3>
             </div>
         </div>
     </div>
-    <div class="col-md-3" onclick="location.href='student';">
+    <div class="col-md-3" onclick="location.href='';">
         <div class="card text-white col-md-10 shadow" style="background-color: rgb(85, 206, 101); border-radius: 5px;">
             <div class="card-body">
-                <h3 class="card-text"><center>Total Programs<br><?php echo $program; ?></center></h3>
+                <h3 class="card-text"><center>Total<br>Invoice<br><?php echo $program; ?></center></h3>
             </div>
         </div>
     </div>
@@ -118,7 +118,8 @@ body {font-family: Verdana, sans-serif;}
   </div>
 </div>
 <div class="row" style="padding-top: 20px;">
-  <div class="col-md-8" style="padding-left: 40px;">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
       <div class="month" style="border-radius: 5px;">      
   <ul>
     <li>
@@ -162,16 +163,6 @@ body {font-family: Verdana, sans-serif;}
     ?>
 </ul>
     </div>
-    <div class="col-md-4">
-      <div class="card text-white col-md-11 shadow" style="background-color: rgb(242, 115, 34); border-radius: 5px;">
-          <div class="card-body">
-              <h3 class="card-text"><center>Announcement<br></center></h3>
-              <img src="<?php echo IMAGE_BASE_URL.'announcement/medium_images/'.$announcement[0]['image']; ?>" style="width: 100%;">
-              <h4 class="card-text"> <center><?php echo $announcement[0]['title']; ?></center></h4>
-              <h5 class="card-text"> <center><?php echo $announcement[0]['description']; ?></center></h5>
-          </div>
-      </div>
-  </div>
 </div>
 <!-- END PAGE HEADER-->
 </div>

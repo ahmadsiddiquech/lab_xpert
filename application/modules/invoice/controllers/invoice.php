@@ -250,7 +250,7 @@ class Invoice extends MX_Controller
         $html='';
         $html.='<option value="">Select</option>';
         foreach ($arr_test as $key => $value) {
-            $html.='<option value='.$value['id'].','.$value['name'].','.$value['charges'].'>'.$value['name'].'</option>';
+            $html.='<option value="'.$value['id'].','.$value['name'].','.$value['charges'].'">'.$value['name'].'</option>';
         }
         echo $html;
     }
@@ -259,7 +259,7 @@ class Invoice extends MX_Controller
         $test = $this->input->post('test');
         $totalIn = $this->input->post('total_pay');
         if(isset($test) && !empty($test)){
-            $testData = explode(",",$test);
+            $testData = explode(',',$test);
             $test_id = $testData[0];
             $charges = $testData[2];
         }
@@ -269,9 +269,10 @@ class Invoice extends MX_Controller
         if (isset($arr_test) && !empty($arr_test)) {
             foreach ($arr_test as $key => $value) {
                 $html.='<tr>';
-                $html.='<td><input style="text-align: center;" class="form-control" readonly type="text" name="catArray[]" value='.$value['category_id'].','.$value['category_name'].'></td>';
-                $html.='<td><input style="text-align: center;" class="form-control" readonly type="text" name="testArray[]" value='.$value['id'].','.$value['name'].'></td>';
+                $html.='<td><input style="text-align: center;" class="form-control" readonly type="text" name="catArray[]" value="'.$value['category_id'].','.$value['category_name'].'"></td>';
+                $html.='<td><input style="text-align: center;" class="form-control" readonly type="text" name="testArray[]" value="'.$value['id'].','.$value['name'].'"></td>';
                 $html.='<td><input style="text-align: center;" class="form-control" readonly type="number" name="chargesArray[]" value='.$value['charges'].'></td>';
+                $html.='<td><a class="btn delete" onclick="delete_row(this)" amount='.$value['charges'].'><i class="fa fa-remove"  title="Delete Item"></i></a></td>';
                 $html.='</tr>';
             }
         }
