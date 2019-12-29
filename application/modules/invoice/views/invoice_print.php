@@ -92,8 +92,12 @@
           <td colspan="1" align="right"><b>Rs.<?php echo $invoice[0]['paid_amount']; ?></b></td>
         </tr>
         <tr>
-          <td colspan="4" align="right"><b>Change: </b></td>
+          <td colspan="4" align="right"><b>Remaining: </b></td>
           <td colspan="1" align="right"><b>Rs.<?php echo $invoice[0]['remaining']; ?></b></td>
+        </tr>
+        <tr>
+          <td colspan="4" align="right"><b>Change: </b></td>
+          <td colspan="1" align="right"><b>Rs.<?php echo $invoice[0]['change']; ?></b></td>
         </tr>
         <tr>
           <th class="border_bottom" colspan="100%"></th>
@@ -180,8 +184,12 @@
           <td colspan="1" align="right"><b>Rs.<?php echo $invoice[0]['paid_amount']; ?></b></td>
         </tr>
         <tr>
-          <td colspan="4" align="right"><b>Change: </b></td>
+          <td colspan="4" align="right"><b>Remaining: </b></td>
           <td colspan="1" align="right"><b>Rs.<?php echo $invoice[0]['remaining']; ?></b></td>
+        </tr>
+        <tr>
+          <td colspan="4" align="right"><b>Changes: </b></td>
+          <td colspan="1" align="right"><b>Rs.<?php echo $invoice[0]['change']; ?></b></td>
         </tr>
         <tr>
           <th class="border_bottom" colspan="100%"></th>

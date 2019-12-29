@@ -56,9 +56,7 @@ class Test extends MX_Controller
             $data['category_name'] = $row->category_name;
             $data['unit_id'] = $row->unit_id;
             $data['unit_name'] = $row->unit_name;
-            $data['male_value'] = $row->male_value;
-            $data['female_value'] = $row->female_value;
-            $data['child_value'] = $row->child_value;
+            $data['normal_value'] = $row->normal_value;
             $data['delivery_time'] = $row->delivery_time;
             $data['charges'] = $row->charges;
             $data['sample'] = $row->sample;
@@ -84,9 +82,7 @@ class Test extends MX_Controller
         }
         $data['name'] = $this->input->post('name');
         $data['test_code'] = $this->input->post('test_code');
-        $data['male_value'] = $this->input->post('male_value');
-        $data['female_value'] = $this->input->post('female_value');
-        $data['child_value'] = $this->input->post('child_value');
+        $data['normal_value'] = $this->input->post('normal_value');
         $data['delivery_time'] = $this->input->post('delivery_time');
         $data['charges'] = $this->input->post('charges');
         $data['sample'] = $this->input->post('sample');

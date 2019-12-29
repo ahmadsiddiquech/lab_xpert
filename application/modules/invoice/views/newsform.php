@@ -86,14 +86,13 @@
                               'id' => 'father_name',
                               'class' => 'form-control',
                               'type' => 'text',
-                              'required' => 'required',
                               'tabindex' => '2',
                               'value' => $news['father_name'],
                               'data-parsley-maxlength'=>TEXT_BOX_RANGE
                               );
                               $attribute = array('class' => 'control-label col-md-5');
                               ?>
-                          <?php echo form_label('Guardian Name<span style="color:red">*</span>', 'father_name', $attribute); ?>
+                          <?php echo form_label('Guardian Name', 'father_name', $attribute); ?>
                           <div class="col-md-7"> <?php echo form_input($data); ?></div>
                         </div>
                       </div>
@@ -233,7 +232,7 @@
                                       'class' => 'form-control',
                                       'type' => 'date',
                                       'tabindex' => '10',
-                                      'value' => $news['delivery_date'],
+                                      'value' => date('Y-m-d'),
                                       );
                                       $attribute = array('class' => 'control-label col-md-5');
                                       ?>
@@ -353,7 +352,15 @@
                             <h4 style="text-align: right;">Cash Received</h4>
                           </div>
                           <div class="col-md-6">
-                            <input type="number" name="paid_amount" id="paid_amount" class="form-control" value="0" style="text-align: center;" tabindex="17">
+                            <input type="number" name="paid_amount" id="paid_amount" class="form-control" value="" style="text-align: center;" tabindex="17" required="required">
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <h4 style="text-align: right;">Remaining</h4>
+                          </div>
+                          <div class="col-md-6">
+                            <input type="number" readonly name="remaining" value="0" class="form-control" style="text-align: center;">
                           </div>
                         </div>
                         <div class="row">
@@ -361,7 +368,7 @@
                             <h4 style="text-align: right;">Change</h4>
                           </div>
                           <div class="col-md-6">
-                            <input type="number" readonly name="remaining" value="0" class="form-control" style="text-align: center;">
+                            <input type="number" readonly name="change" value="0" class="form-control" style="text-align: center;">
                           </div>
                         </div>
                       </div>
@@ -439,6 +446,7 @@ var total_pay = $('input[name=total_pay]').val();
                   $("#table_data").append(result[0]);
                 $('input[name=total_pay]').val(result[1]);
                 $('input[name=net_amount]').val(result[1]);
+                $('input[name=remaining]').val(result[1]);
               }
 });
 });
@@ -450,8 +458,6 @@ event.preventDefault();
   $('input[name=total_pay]').val(total_pay-amount);
   var net_amount = $('input[name=net_amount]').val();
   $('input[name=net_amount]').val(net_amount-amount);
-  var remaining = $('input[name=remaining]').val();
-  $('input[name=remaining]').val(remaining-amount);
 
 });
 
@@ -460,13 +466,26 @@ $('input[name=discount]').keyup(function() {
     var discount = $(this).val();
     var net_amount = total_pay - discount;
     $('input[name=net_amount]').val(net_amount);
+    $('input[name=remaining]').val(net_amount);
 });
 
 $('input[name=paid_amount]').keyup(function() {
     var net_amount = parseInt($('input[name=net_amount]').val());
     var paid_amount = $(this).val();
-    var remaining = paid_amount - net_amount;
+    var change = paid_amount - net_amount;
+    var remaining = net_amount - paid_amount;
+    if (change > 0) {
+      $('input[name=change]').val(change);
+    }
+    else{
+      $('input[name=change]').val(0);
+    }
+     if (remaining > 0) {
       $('input[name=remaining]').val(remaining);
+     }
+     else{
+      $('input[name=remaining]').val(0);
+     }
     
 });
 $(".chosen").chosen();

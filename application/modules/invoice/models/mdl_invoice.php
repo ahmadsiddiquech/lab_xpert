@@ -82,13 +82,6 @@ class Mdl_invoice extends CI_Model {
         $this->db->update($table, $data);
     }
 
-    function _delete($arr_col, $org_id) {       
-        $table = $this->get_table();
-        $this->db->where('id', $arr_col);
-        $this->db->where('org_id',$org_id);
-        $this->db->delete($table);
-    }
-
     function _get_invoice_data($invoice_id,$org_id){
         $this->db->select('users.*,invoice.*,test_invoice.*,patient.*');
         $this->db->from('invoice');

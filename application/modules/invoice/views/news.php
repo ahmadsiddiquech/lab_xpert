@@ -47,8 +47,6 @@
                                         echo anchor($print_url, '<i class="fa fa-print"></i>', array('class' => 'action_edit btn blue c-btn','title' => 'Print Invoice'));
 
                                         echo anchor($edit_url, '<i class="fa fa-mail-forward"></i>', array('class' => 'action_edit btn blue c-btn','title' => 'Enter Result'));
-
-                                        echo anchor('"javascript:;"', '<i class="fa fa-times"></i>', array('class' => 'delete_record btn red c-btn', 'rel' => $new->id, 'title' => 'Delete invoice'));
                                         ?>
                                         </td>
                                     </tr>
@@ -84,32 +82,5 @@ $(document).ready(function(){
         });
     });
 
-  $(document).off('click', '.delete_record').on('click', '.delete_record', function(e){
-        var id = $(this).attr('rel');
-        e.preventDefault();
-      swal({
-        title : "Are you sure to delete the selected invoice?",
-        text : "You will not be able to recover this invoice!",
-        type : "warning",
-        showCancelButton : true,
-        confirmButtonColor : "#DD6B55",
-        confirmButtonText : "Yes, delete it!",
-        closeOnConfirm : false
-      },
-        function () {
-            
-               $.ajax({
-                    type: 'POST',
-                    url: "<?php echo ADMIN_BASE_URL?>invoice/delete",
-                    data: {'id': id},
-                    async: false,
-                    success: function() {
-                    location.reload();
-                    }
-                });
-        swal("Deleted!", "invoice has been deleted.", "success");
-      });
-
-    });
 });
 </script>

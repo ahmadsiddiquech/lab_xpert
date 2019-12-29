@@ -86,28 +86,28 @@ body {font-family: Verdana, sans-serif;}
     <div class="col-md-3" onclick="location.href='';">
         <div class="card text-white col-md-12 shadow" style="background-color: rgb(255, 189, 53); border-radius: 5px;">
             <div class="card-body ">
-                <h3 class="card-text"><center>Total<br>Test<br><?php echo $teacher; ?></center></h3>
+                <h3 class="card-text"><center>Total<br>Test<br><?php echo 0; ?></center></h3>
             </div>
         </div>
     </div>
     <div class="col-md-3" onclick="location.href='';" >
         <div class="card text-white  col-md-12 shadow" style="background-color: rgb(2, 156, 252); border-radius: 5px;">
             <div class="card-body">
-                <h3 class="card-text"><center>Total<br>Unit<br><?php echo $parent; ?></center></h3>
+                <h3 class="card-text"><center>Total<br>Unit<br><?php echo 0; ?></center></h3>
             </div>
         </div>
     </div>
     <div class="col-md-3" onclick="location.href='';">
         <div class="card text-white col-md-12 shadow" style="background-color: rgb(115, 96, 237); border-radius: 5px;">
             <div class="card-body">
-                <h3 class="card-text"><center>Total<br>Category<br><?php echo $student; ?></center></h3>
+                <h3 class="card-text"><center>Total<br>Category<br><?php echo 0; ?></center></h3>
             </div>
         </div>
     </div>
     <div class="col-md-3" onclick="location.href='';">
         <div class="card text-white col-md-10 shadow" style="background-color: rgb(85, 206, 101); border-radius: 5px;">
             <div class="card-body">
-                <h3 class="card-text"><center>Total<br>Invoice<br><?php echo $program; ?></center></h3>
+                <h3 class="card-text"><center>Total<br>Invoice<br><?php echo 0; ?></center></h3>
             </div>
         </div>
     </div>

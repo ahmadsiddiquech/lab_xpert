@@ -119,55 +119,17 @@
                         <div class="form-group">
                           <?php
                                 $data = array(
-                                'name' => 'male_value',
-                                'id' => 'male_value',
+                                'name' => 'normal_value',
+                                'id' => 'normal_value',
                                 'class' => 'form-control',
                                 'type' => 'text',
                                 'tabindex' => '5',
                                 'data-parsley-maxlength'=>TEXT_BOX_RANGE,
-                               'value' => $news['male_value'],
+                               'value' => $news['normal_value'],
                                 );
                                 $attribute = array('class' => 'control-label col-md-4');
                                 ?>
-                          <?php echo form_label('Male Value', 'male_value', $attribute); ?>
-                          <div class="col-md-8"> <?php echo form_input($data); ?> </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-5">
-                        <div class="form-group">
-                          <?php
-                                $data = array(
-                                'name' => 'female_value',
-                                'id' => 'female_value',
-                                'class' => 'form-control',
-                                'type' => 'text',
-                                'tabindex' => '6',
-                                'data-parsley-maxlength'=>TEXT_BOX_RANGE,
-                               'value' => $news['female_value'],
-                                );
-                                $attribute = array('class' => 'control-label col-md-4');
-                                ?>
-                          <?php echo form_label('Female Value', 'female_value', $attribute); ?>
-                          <div class="col-md-8"> <?php echo form_input($data); ?> </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-5">
-                        <div class="form-group">
-                          <?php
-                                $data = array(
-                                'name' => 'child_value',
-                                'id' => 'child_value',
-                                'class' => 'form-control',
-                                'type' => 'text',
-                                'tabindex' => '7',
-                                'data-parsley-maxlength'=>TEXT_BOX_RANGE,
-                               'value' => $news['child_value'],
-                                );
-                                $attribute = array('class' => 'control-label col-md-4');
-                                ?>
-                          <?php echo form_label('Child Value', 'child_value', $attribute); ?>
+                          <?php echo form_label('Normal Value', 'normal_value', $attribute); ?>
                           <div class="col-md-8"> <?php echo form_input($data); ?> </div>
                         </div>
                       </div>

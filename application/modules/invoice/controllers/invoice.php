@@ -78,11 +78,12 @@ class Invoice extends MX_Controller
         $this->load->view('invoice_print',$data);
     }
 
-    function print_invoice_on_save($invoice_id) {
+    function print_report() {
+        $invoice_id = $this->uri->segment(4);
         $user_data = $this->session->userdata('user_data');
         $org_id = $user_data['user_id'];
-        $data['invoice'] = $this->_get_invoice_data($invoice_id,$org_id)->result_array();
-        $this->load->view('invoice_print',$data);
+        $data['report'] = $this->_get_invoice_data($invoice_id,$org_id)->result_array();
+        $this->load->view('report_print',$data);
     }
  
     function _get_data_from_db($update_id) {
@@ -104,6 +105,7 @@ class Invoice extends MX_Controller
             $data['net_amount'] = $row->net_amount;
             $data['paid_amount'] = $row->paid_amount;
             $data['remaining'] = $row->remaining;
+            $data['change'] = $row->change;
             $data['p_id'] = $row->p_id;
             $data['name'] = $row->name;
             $data['org_id'] = $row->org_id;
@@ -129,6 +131,7 @@ class Invoice extends MX_Controller
         $data['net_amount'] = $this->input->post('net_amount');
         $data['paid_amount'] = $this->input->post('paid_amount');
         $data['remaining'] = $this->input->post('remaining');
+        $data['change'] = $this->input->post('change');
 
 
         $user_data = $this->session->userdata('user_data');
@@ -153,6 +156,9 @@ class Invoice extends MX_Controller
         $data['name'] = $this->input->post('name');
         $data['date_time'] = date('Y-m-d');
         $data['referred_by'] = $this->input->post('referred_by');
+        if (empty($data['referred_by'])) {
+            $data['referred_by'] = 'Self';
+        }
         $data['delivery_date'] = $this->input->post('delivery_date');
         $data['status'] = $this->input->post('status');
         $data['total_pay'] = $this->input->post('total_pay');
@@ -160,6 +166,7 @@ class Invoice extends MX_Controller
         $data['net_amount'] = $this->input->post('net_amount');
         $data['paid_amount'] = $this->input->post('paid_amount');
         $data['remaining'] = $this->input->post('remaining');
+        $data['change'] = $this->input->post('change');
 
         $test = $this->input->post('testArray');
         $test2=explode(',', $test[0]);
@@ -191,12 +198,11 @@ class Invoice extends MX_Controller
             $dataTest['p_id'] = $patient_id;
             $invoice_id = $this->_insert($dataTest);
             $test_id = $this->insert_test($invoice_id,$org_id);
-            $this->print_invoice_on_save($invoice_id);
         }
-        // $this->session->set_flashdata('message', 'invoice'.' '.DATA_SAVED);
-        // $this->session->set_flashdata('status', 'success');
+        $this->session->set_flashdata('message', 'invoice'.' '.DATA_SAVED);
+        $this->session->set_flashdata('status', 'success');
         
-        // redirect(ADMIN_BASE_URL . 'invoice');
+        redirect(ADMIN_BASE_URL . 'invoice/print_invoice/'.$invoice_id);
     }
 
     function insert_test($invoice_id,$org_id){
@@ -221,9 +227,7 @@ class Invoice extends MX_Controller
                     $data['category_name'] = $value1['category_name'];
                     $data['unit_id'] = $value1['unit_id'];
                     $data['unit_name'] = $value1['unit_name'];
-                    $data['male_value'] = $value1['male_value'];
-                    $data['female_value'] = $value1['female_value'];
-                    $data['child_value'] = $value1['child_value'];
+                    $data['normal_value'] = $value1['normal_value'];
                     $data['delivery_time'] = $value1['delivery_time'];
                     $data['charges'] = $value1['charges'];
                     $data['org_id'] = $org_id;
@@ -283,12 +287,6 @@ class Invoice extends MX_Controller
 
     //==============AJAX FUNCTIONS END==================
 
-    function delete() {
-        $delete_id = $this->input->post('id');
-        $user_data = $this->session->userdata('user_data');
-        $org_id = $user_data['user_id'];
-        $this->_delete($delete_id, $org_id);
-    }
 
     function detail() {
         $update_id = $this->input->post('id');

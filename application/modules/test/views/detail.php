@@ -21,15 +21,7 @@
 </div>
 <div class="row">
     <div class="col-md-6">
-       <h4><b>Male Value:&nbsp;&nbsp;</b></h4><?php echo $user['male_value']; ?>
-    </div>
-    <div class="col-md-6">
-        <h4><b>Female Value:&nbsp;&nbsp;</b></h4><?php echo $user['female_value']; ?>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6">
-        <h4><b>Child Value:&nbsp;&nbsp;</b></h4><?php echo $user['child_value']; ?>
+       <h4><b>Normal Value:&nbsp;&nbsp;</b></h4><?php echo $user['normal_value']; ?>
     </div>
     <div class="col-md-6">
         <h4><b>Charges:&nbsp;&nbsp;</b></h4><?php echo $user['charges']; ?>

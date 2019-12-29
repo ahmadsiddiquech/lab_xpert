@@ -47,4 +47,7 @@
     <div class="col-md-6">
         <h4><b>Remaining:&nbsp;&nbsp;</b></h4><?php echo $user['remaining']; ?>
     </div>
+    <div class="col-md-6">
+        <h4><b>Change:&nbsp;&nbsp;</b></h4><?php echo $user['change']; ?>
+    </div>
 </div>

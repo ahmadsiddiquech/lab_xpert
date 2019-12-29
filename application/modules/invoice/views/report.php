@@ -1,6 +1,6 @@
 <div class="content-wrapper">
     <h3>Test Result
-    <a href="<?php echo ADMIN_BASE_URL . 'invoice' ?>"><button type="button" class="btn btn-lg btn-primary pull-right"><i class="fa fa-chevron-left"></i>&nbsp;&nbsp;&nbsp;<b>Back</b></button></a></h3>
+    <a href="<?php echo ADMIN_BASE_URL . 'invoice/manage' ?>"><button type="button" class="btn btn-lg btn-primary pull-right"><i class="fa fa-chevron-left"></i>&nbsp;&nbsp;&nbsp;<b>Back</b></button></a></h3>
     <div class="container-fluid">
 
 
@@ -88,9 +88,7 @@
                         <thead class="bg-th">
                         <tr class="bg-col">
                         <th>Test</th>
-                        <th>Male Value</th>
-                        <th>Female Value</th>
-                        <th>Child Value</th>
+                        <th>Normal Value</th>
                         <th>Result</th>
                         </tr>
                         </thead>
@@ -105,27 +103,26 @@
                                         <input class="form-control" readonly type="hidden" name="test_id[]" value="<?php echo $new['id']  ?>">
                                         </td>
                                         <td><input class="form-control" readonly type="text" value="<?php echo $new['test_code'].'-'.$new['test_name'].'-'.$new['category_name']  ?>"></td>
-                                        <td><input class="form-control" readonly type="text" value="<?php echo $new['male_value'] ?>"></td>
-                                        <td><input class="form-control" readonly type="text" value="<?php echo $new['female_value'] ?>"></td>
-                                        <td><input class="form-control" readonly type="text" value="<?php echo $new['child_value'] ?>"></td>
+                                        <td><input class="form-control" readonly type="text" value="<?php echo $new['normal_value'] ?>"></td>
                                         <td>
                                             <input class="form-control" id="test_id_<?php echo $new['id']; ?>" type="text" name="result_value[]" 
                                             value="<?php if(isset($new['result_value'])){ echo($new['result_value']);} ?>">
-                                            <div class="btn btn-primary edit_report round" test_id="<?php echo $new['id']; ?>" obt_marks="<?php echo $new['result_value'];?>"><i class="fa fa-check"></i></div>
+                                            <div class="btn btn-primary edit_report round" test_id="<?php echo $new['id']; ?>"><i class="fa fa-check"></i></div>
                                         </td>
                                     </tr>
                                     <?php } ?>    
                                 <?php } ?>
                             </tbody>
                     </table>
+                    <a href="<?php echo ADMIN_BASE_URL . 'invoice/print_report/'.$this->uri->segment(4); ?>">
+                        <button type="button" class="btn btn-primary btn-lg pull-right" style="margin-right: 80px;border-radius: 7px !important;font-size: 20px;" tabindex="20"><i class="fa fa-print"></i>&nbsp;Print</button>
+                        </a>
                     </div>
                 </div>
 
             </div>
         </div>
-    </form>
-    <!-- END DATATABLE 1 -->
-    
+      </div>
     </div>
 </div>    
 
